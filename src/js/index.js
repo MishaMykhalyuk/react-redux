@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import Rx from "rxjs";
 import Slider from './Slider.js';
 import createReducer from './createReducer.js'
-import createStore from './createStore.js'
+import createState from './createState.js'
 import { moverActions } from './actions.js';
 
 const moverReducer = createReducer(
@@ -14,9 +14,7 @@ const moverReducer = createReducer(
 		.map(value => state => Object.assign(state, { value: state.value - value }))
 );
 
-const reducer = createReducer(moverReducer);
-
-const store = createStore(reducer, Rx.Observable.of({ value: 30 }));
+const state = createState(moverReducer, Rx.Observable.of({ value: 30 }));
 
 const render = state => {
 	ReactDOM.render(
@@ -27,6 +25,6 @@ const render = state => {
 		/>,
 		 document.getElementById('app')
 	)
-}
+};
 
-store.subscribe(render);
+state.subscribe(render);
