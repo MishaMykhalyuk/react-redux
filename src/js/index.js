@@ -8,19 +8,15 @@ import { moverActions } from './actions.js';
 
 const moverReducer = createReducer(
 	moverActions.moveRigth$
-		.map(value => 
-			state => Object.assign(state, { value: state.value + value })
-		),
+		.map(value => state => Object.assign(state, { value: state.value + value })),
 
 	moverActions.moveLeft$
-		.map(value => 
-			state => Object.assign(state, { value: state.value - value })
-		)
+		.map(value => state => Object.assign(state, { value: state.value - value }))
 );
 
 const reducer = createReducer(moverReducer);
 
-const store = createStore(reducer, Rx.Observable.of({ value: 10 }));
+const store = createStore(reducer, Rx.Observable.of({ value: 30 }));
 
 const render = state => {
 	ReactDOM.render(
